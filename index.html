@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>jsPDF Paging Proof-of-Concept</title>
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="js/jspdf.min.js"></script>
+        <script>
+                $('document').ready(function() {
+                        $('#makepdf').click(function() {
+                                console.log("Creating jsPDF");
+                                var doc = new jsPDF();
+				doc.fromHTML($('#output').html(), 0, 0);
+                                doc.save('test.pdf');
+                        });
+
+                        var html = "<table>";
+                        for (i = 0; i < 100; i++) {
+                                html += "<tr><td>Testing 1 2 3</td> <td>This is only a test.</td></tr>";
+                        }
+                        html += "</table>";
+                        $('#output').html(html);
+                });
+        </script>
+</head>
+<body>
+        <button id="makepdf">Make a PDF!</button>
+        <div id="output"></div>
+</body>
+</html>
